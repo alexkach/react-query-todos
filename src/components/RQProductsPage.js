@@ -1,4 +1,6 @@
-import { useProductsdata } from "../hooks/useProductsdata";
+import { Link } from "react-router-dom";
+
+import { useProductsData } from "../hooks/useProductsData";
 
 export const RQProductsPage = () => {
 	const onSuccess = (data) =>
@@ -14,7 +16,7 @@ export const RQProductsPage = () => {
 		isError,
 		isFetching,
 		// refetch,
-	} = useProductsdata(onSuccess, onError);
+	} = useProductsData(onSuccess, onError);
 
 	console.log({ isLoading, isFetching });
 
@@ -30,12 +32,14 @@ export const RQProductsPage = () => {
 		<>
 			<h2> RQProductsPage</h2>
 			{/* <button onClick={refetch}>Fetch Products</button> */}
-			{/* {res?.data.map((product) => (
-				<div key={product.id}> {product.title} </div>
-			))} */}
-			{res.map((prod) => (
-				<div key={prod}> {prod} </div>
+			{res?.data.map((product) => (
+				<div key={product.id}>
+					<Link to={`${product.id}`}>{product.title}</Link>
+				</div>
 			))}
+			{/* {res.map((prod) => (
+				<div key={prod}> {prod} </div>
+			))} */}
 		</>
 	);
 };

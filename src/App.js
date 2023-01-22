@@ -1,8 +1,9 @@
-import { Routes, NavLink, Route } from "react-router-dom";
+import { Routes, NavLink, Route, Outlet } from "react-router-dom";
 
 import { ProductsPage } from "./components/ProductsPage";
 import { RQProductsPage } from "./components/RQProductsPage";
 import { HomePage } from "./components/HomePage";
+import { RQProductPage } from "./components/RQProductPage";
 
 export const App = () => {
 	return (
@@ -22,9 +23,11 @@ export const App = () => {
 					</ul>
 				</nav>
 			</div>
+			<Outlet />
 			<Routes>
 				<Route path="products" element={<ProductsPage />} />
 				<Route path="rq-products" element={<RQProductsPage />} />
+				<Route path="rq-products/:id" element={<RQProductPage />} />
 				<Route path="/" element={<HomePage />} />
 			</Routes>
 		</>

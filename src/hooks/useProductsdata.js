@@ -3,7 +3,7 @@ import axios from "axios";
 
 const fetchRQProducts = () => axios.get("http://localhost:4000/products");
 
-export const useProductsdata = (onSuccess, onError) =>
+export const useProductsData = (onSuccess, onError) =>
 	useQuery("products", fetchRQProducts, {
 		// cacheTime: 5000,
 		// staleTime: 30000,
@@ -14,8 +14,8 @@ export const useProductsdata = (onSuccess, onError) =>
 		// enabled: false,
 		onSuccess,
 		onError,
-		select: (data) => {
-			const productsTitle = data.data.map((item) => item.title);
-			return productsTitle;
-		},
+		// select: (data) => {
+		// 	const productsTitle = data.data.map((item) => item.title);
+		// 	return productsTitle;
+		// },
 	});
