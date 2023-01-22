@@ -1,7 +1,4 @@
-import axios from "axios";
-import { useQuery } from "react-query";
-
-const fetchRQProducts = () => axios.get("http://localhost:4000/products");
+import { useProductsdata } from "../hooks/useProductsdata";
 
 export const RQProductsPage = () => {
 	const onSuccess = (data) =>
@@ -17,21 +14,7 @@ export const RQProductsPage = () => {
 		isError,
 		isFetching,
 		// refetch,
-	} = useQuery("products", fetchRQProducts, {
-		// cacheTime: 5000,
-		// staleTime: 30000,
-		// refetchOnMount: false,
-		// refetchOnWindowFocus: true,
-		// refetchInterval: 2000,
-		// refetchIntervalInBackground: true,
-		// enabled: false,
-		onSuccess,
-		onError,
-		select: (data) => {
-			const productsTitle = data.data.map((item) => item.title);
-			return productsTitle;
-		},
-	});
+	} = useProductsdata(onSuccess, onError);
 
 	console.log({ isLoading, isFetching });
 
